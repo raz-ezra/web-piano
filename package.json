@@ -6,8 +6,7 @@
     "start:dev": "webpack-dev-server --config webpack.config.dev.js --port:3000",
     "test": "jest --watchAll",
     "test:ci": "jest",
-    "clean:build": "rimraf ./build && mkdir build",
-    "prebuild": "clean:build",
+    "prebuild": "rimraf ./build && mkdir build",
     "build": "webpack --config webpack.config.prod.js"
   },
   "dependencies": {
