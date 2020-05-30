@@ -7,7 +7,7 @@
     "test": "jest --watchAll",
     "test:ci": "jest",
     "clean:build": "rimraf ./build && mkdir build",
-    "prebuild": "run-p clean:build",
+    "prebuild": "clean:build",
     "build": "webpack --config webpack.config.prod.js"
   },
   "dependencies": {
