@@ -8,9 +8,7 @@
     "test:ci": "jest",
     "clean:build": "rimraf ./build && mkdir build",
     "prebuild": "run-p clean:build",
-    "build": "webpack --config webpack.config.prod.js",
-    "postbuild": "run-p serve:build",
-    "serve:build": "http-server ./build"
+    "build": "webpack --config webpack.config.prod.js"
   },
   "dependencies": {
     "immer": "2.1.3",
