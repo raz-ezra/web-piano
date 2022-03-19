@@ -12,15 +12,27 @@ function App() {
   const [midiSounds, setMidiSounds] = useState();
   const [notes, setNotes] = useState([]);
   const [keyboardActive, setKeyboardActive] = useState(false);
+  const [activeNote, setActiveNote] = useState(null);
 
   const w = 50;
   const noteLength = 1;
+
+  useEffect(() => {
+    let timeout;
+    if (activeNote || activeNote === 0) {
+      timeout = setTimeout(() => {
+        setActiveNote(null);
+      }, 500)
+    }
+    return () => clearTimeout(timeout);
+  }, [activeNote])
 
   useEffect(() => {
     setNotes(setNotesArray(numOfNotes, startingNote, startingNote % 12));
   }, [numOfNotes, startingNote, midiSounds]);
 
   function playNote(note) {
+    setActiveNote(notes.find(noteObj => noteObj.pitch === note).id);
     midiSounds.setInstrumentVolume(sound, 0.5);
     midiSounds.playChordNow(sound, [note], noteLength);
   }
@@ -90,6 +102,7 @@ function App() {
               width={w}
               lable={note.key}
               keyboardActive={keyboardActive}
+              isActive={note.id === activeNote}
             />
           );
         })}
